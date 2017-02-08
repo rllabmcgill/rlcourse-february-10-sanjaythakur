@@ -1,10 +1,10 @@
 
 # coding: utf-8
 
-# GLIE
-# Model Free, used only state action values
-# Every Visit MC
-# Easily extensible to any TD method by changing value of LAMBDA
+# * GLIE
+# * Model Free, used only state action values
+# * Every Visit MC
+# * Easily extensible to any TD method by changing value of LAMBDA
 
 # In[1]:
 
@@ -40,7 +40,7 @@ ACTION_RIGHT = 'RIGHT'
 NUMBER_OF_EPISODES_PER_POLICY_EVALUATION = 1
 
 #Maximum number of iterations for convergence to the optimal policy
-MAXIMUM_NUMBER_OF_POLICY_ITERATIONS = 10
+MAXIMUM_NUMBER_OF_POLICY_ITERATIONS = 40
 
 #Start and end of any episode
 START_STATE = '00'
@@ -290,20 +290,17 @@ def generateGreedilySampledEpisode():
 
 # In[9]:
 
-MAXIMUM_NUMBER_OF_POLICY_ITERATIONS = 40
-NUMBER_OF_EPISODES_PER_POLICY_EVALUATION = 1
-
 for policy_iterator in range(MAXIMUM_NUMBER_OF_POLICY_ITERATIONS):
-    print("Policy iteration number", str(policy_iterator), "\n")
+    print(RED("Policy iteration number " + str(policy_iterator) + "\n"))
     EPSILON = (1/((0.2 * policy_iterator) + 1))
     for episode_iterator in range(NUMBER_OF_EPISODES_PER_POLICY_EVALUATION):
         
         random_throw = random.uniform(0, 1)
         if random_throw < EPSILON:
-            print("Generating samples randomly")
+            print("Generating samples ", BLUE("RANDOMLY"))
             states_in_episode, actions_in_episode = generateRandomlySampledEpisode()
         else:
-            print("Generating samples greedily")
+            print("Generating samples ",BLUE("GREEDILY"))
             states_in_episode, actions_in_episode = generateGreedilySampledEpisode()
         
         print("Trajectory Generated", end = '')
