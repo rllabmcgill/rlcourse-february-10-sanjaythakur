@@ -324,7 +324,7 @@ for policy_iterator in range(MAXIMUM_NUMBER_OF_POLICY_ITERATIONS):
     print("\n")
     time.sleep(wait_time)
 
-#printStateActionValuePairs()
+printStateActionValuePairs()
 
 # In[ ]:
 
